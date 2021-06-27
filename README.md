@@ -4,10 +4,6 @@
 
 Github Explorer é um projeto front-end construído com o intuito de aprender e treinar habilidades de React.
 
-Analise o desempenho das suas vendas por diferentes perspectivas.
-
-Esta aplicação consiste em exibir um dashboard a partir de dados fornecidos por um back end construído com Spring Boot.
-
 ## Tecnologias utilizadas
 
 -   HTML / TypeScript
@@ -37,7 +33,7 @@ yarn dev
 yarn build
 ```
 
-# Autor
+## Autor
 
 [Gustavo Martini](https://github.com/martinigustavo)
 
