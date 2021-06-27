@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f23557;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+body,
+input,
+button {
+    font: 16px "Roboto", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+    font-weight: 400;
+}
+
+button {
+    cursor: pointer;
+}
