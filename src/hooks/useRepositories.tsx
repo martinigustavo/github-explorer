@@ -15,8 +15,14 @@ export default function useRepositories(user: string, pageLimit: number) {
         fetch(
             `https://api.github.com/users/${user}/repos?page=${virtualPage}&per_page=${pageLimit}`
         )
-            .then((res) => res.json())
-            .then(setRepositories)
+            .then((res) => {
+                if (res.status === 403) {
+                    throw Error("API rate limit exceeded.");
+                } else {
+                    res.json();
+                }
+            })
+            .then((data) => setRepositories)
             .catch(window.alert);
     }
 
