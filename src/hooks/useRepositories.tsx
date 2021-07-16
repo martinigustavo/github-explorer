@@ -12,8 +12,9 @@ export default function useRepositories(user: string, pageLimit?: number) {
     function fetchRepositories(page: number) {
         const virtualPage = page - 1 <= 0 ? 0 : page - 1;
 
+        // requisição com XHR
         const xhr = new XMLHttpRequest();
-        var data;
+        let data;
 
         xhr.responseType = "json";
         xhr.onreadystatechange = () => {
@@ -22,7 +23,6 @@ export default function useRepositories(user: string, pageLimit?: number) {
             }
 
             if (xhr.readyState === 4) {
-                console.log(xhr.response);
                 data = xhr.response;
 
                 setRepositories(data);
@@ -37,6 +37,9 @@ export default function useRepositories(user: string, pageLimit?: number) {
         );
 
         xhr.send();
+
+        // requisição com fetch
+
         // fetch(
         //     `https://api.github.com/users/${user}/repos?page=${virtualPage}&per_page=${
         //         pageLimit || 1000
