@@ -6,12 +6,12 @@ import useRepositories from "../hooks/useRepositories";
 
 export function RepositoryList() {
     const [user, setUser] = useState("");
-    const [page, setPage] = useState(1);
-    const { repositories, fetchRepositories } = useRepositories(user, 6);
+    const [page, setPage] = useState(0);
+    const { repositories, fetchRepositories } = useRepositories(user);
 
     useEffect(() => {
         fetchRepositories(page);
-    }, [page]);
+    }, []);
 
     const handleSearch = (e: any) => {
         setUser(e.target.value);
@@ -19,31 +19,33 @@ export function RepositoryList() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        console.log("tamanho do repositorio =" + repositories.length);
         fetchRepositories(page);
     };
 
     return (
-        <section className="repository-list">
-            <form onSubmit={handleSubmit}>
-                <legend>Informe o user do github: </legend>
-                <input
-                    type="text"
-                    autoComplete="off"
-                    placeholder="Digite o user"
-                    onChange={handleSearch}
-                />
-                <button type="submit">Buscar</button>
-            </form>
+        <div>
+            <section className="repository-list">
+                <form onSubmit={handleSubmit}>
+                    <legend>Informe o user do github: </legend>
+                    <input
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Digite o user"
+                        onChange={handleSearch}
+                    />
+                    <button type="submit">Buscar</button>
+                </form>
 
-            <h1>
-                Lista de repositórios{" "}
-                {repositories.length > 0
-                    ? " (" + repositories.length + ")"
-                    : "(0)"}
-            </h1>
+                <h1>
+                    Lista de repositórios{" "}
+                    {repositories.length > 0
+                        ? " (" + repositories.length + ")"
+                        : "(0)"}
+                </h1>
 
-            {/* paginação */}
-            <span>
+                {/* paginação */}
+                {/* <span>
                 {Array(5)
                     .fill("")
                     .map((_, index) => {
@@ -57,20 +59,21 @@ export function RepositoryList() {
                             </button>
                         );
                     })}
-            </span>
+            </span> */}
 
-            <ul>
-                {repositories.length > 0 ? (
-                    repositories.map((repository) => (
-                        <RepositoryItem
-                            key={repository.name}
-                            repository={repository}
-                        />
-                    ))
-                ) : (
-                    <p>Sem resultados.</p>
-                )}
-            </ul>
-        </section>
+                <ul>
+                    {repositories.length > 0 ? (
+                        repositories.map((repository) => (
+                            <RepositoryItem
+                                key={repository.name}
+                                repository={repository}
+                            />
+                        ))
+                    ) : (
+                        <p>Sem resultados.</p>
+                    )}
+                </ul>
+            </section>
+        </div>
     );
 }
