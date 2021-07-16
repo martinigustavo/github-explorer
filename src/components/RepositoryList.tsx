@@ -19,7 +19,6 @@ export function RepositoryList() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log("tamanho do repositorio =" + repositories.length);
         fetchRepositories(page);
     };
 
